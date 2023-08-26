@@ -1,0 +1,37 @@
+.checkbox {
+  opacity: 0;
+}
+.checklabel {
+  position: relative;
+  padding-left: 40px;
+  color: #fdfdfd;
+  cursor: pointer;
+}
+.checklabel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background: #89cfc7;
+}
+.checklabel::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 4px;
+  width: 5px;
+  height: 12px;
+  border: solid red;
+  transition: 0.2s ease;
+}
+.checkbox:not(:checked) + .checklabel::after {
+  transform: scale(0);
+  opacity: 0;
+}
+.checkbox:checked + .checklabel::after {
+  transform: rotate(35deg) scale(1);
+  opacity: 1;
+}

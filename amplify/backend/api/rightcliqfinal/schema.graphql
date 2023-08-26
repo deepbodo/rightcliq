@@ -1,0 +1,400 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY {
+  globalAuthRule: AuthRule = { allow: public }
+} # FOR TESTING ONLY!
+type UserDetail @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  QId: String!
+    @index(
+      name: "byQuerryID"
+      sortKeyFields: ["createdAt"]
+      queryField: "dataByQuerryID"
+    )
+  fisrtname: String
+  lastname: String
+  phone: String
+  email: String!
+  employee: Int
+  dataconfirm: Int!
+  companyname: String
+  state: String
+  address: String
+  note: [Note]
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+type CreatorDetail @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+    @index(
+      name: "creatorByUserID"
+      sortKeyFields: ["createdAt"]
+      queryField: "creatorDataByUserID"
+    )
+  QId: String!
+    @index(
+      name: "creatorByQuerryID"
+      sortKeyFields: ["createdAt"]
+      queryField: "creatorDataByQuerryID"
+    )
+  fisrtname: String
+  lastname: String
+  phone: String
+  email: String
+  linkedin: String
+  resume: String
+  function: String
+  whatsapp: String
+  image: String
+  pending: String
+  sector: String
+  experience: String
+  howLong: String
+  totalprofessional: String
+  samples: String
+  demo1: String
+  demo2: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+type CreatorApproved @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+    @index(
+      name: "creatorApprovedByUserID"
+      sortKeyFields: ["createdAt"]
+      queryField: "creatorApprovedDataByUserID"
+    )
+  QId: String!
+    @index(
+      name: "creatorApprovedByQuerryID"
+      sortKeyFields: ["createdAt"]
+      queryField: "creatorApprovedDataByQuerryID"
+    )
+  fisrtname: String
+  lastname: String
+  phone: String
+  email: String
+  linkedin: String
+  resume: String
+  function: String
+  whatsapp: String
+  image: String
+  sector: String
+  experience: String
+  howLong: String
+  totalprofessional: String
+  samples: String
+  demo1: String
+  demo2: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+type Note @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+    @index(
+      name: "byprojectID"
+      sortKeyFields: ["createdAt"]
+      queryField: "projectByProjectID"
+    )
+  username: ID!
+    @index(
+      name: "byUserID"
+      sortKeyFields: ["createdAt"]
+      queryField: "projectByUserID"
+    )
+  projectname: String!
+  firstname: String
+  lastname: String
+  industry: String!
+  price: String
+  templateprice: String
+  file: String
+  preference: String
+  companyname: String
+  templateId: String
+  category: String!
+  moredetail: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+type ProjectApproved
+  @model
+  @auth(
+    rules: [
+      # allow admins to create, update and delete books
+      {
+        allow: groups
+        groups: ["Admin"]
+        operations: [create, update, delete, read]
+      }
+      { allow: groups, groups: ["Creator"], operations: [update, delete, read] }
+      # allow all authenticated users to view books
+      { allow: private, operations: [read, update] }
+      # allow all guest users (not authenticated) to view books
+      { allow: public, operations: [read, update] }
+    ]
+  ) {
+  id: ID!
+    @index(
+      name: "byprojectapprovedID"
+      sortKeyFields: ["createdAt"]
+      queryField: "projectByProjectApprovedID"
+    )
+  username: ID!
+    @index(
+      name: "byApprovedUserID"
+      sortKeyFields: ["createdAt"]
+      queryField: "projectApprovedByUserID"
+    )
+  projectname: String!
+  industry: String!
+  firstname: String
+  lastname: String
+  preference: String!
+  companyname: String
+  accepted: String
+  declined: String
+  price: String
+  demo: String
+  final: String
+  status: String
+  demouserstatus: String
+  demoadminstatus: String
+  finaluserstatus: String
+  finaladminstatus: String
+  delivered: String
+  creatorId: String
+    @index(
+      name: "byApprovedCreatorID"
+      sortKeyFields: ["createdAt"]
+      queryField: "projectApprovedByCreatorID"
+    )
+  creatorName: String
+  templateId: String
+  category: String!
+  moredetail: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type Orders @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  ordername: String!
+  customername: String!
+  projectname: String
+}
+
+type OrderConfirmed @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  username: String!
+  projectname: String!
+  industry: String!
+  preference: String!
+  companyname: String!
+  creator: String!
+  payment: String!
+  amount: String!
+  category: String
+}
+
+type Categories
+  @model
+  @auth(
+    rules: [
+      # allow admins to create, update and delete books
+      {
+        allow: groups
+        groups: ["Admin"]
+        operations: [create, update, delete, read]
+      }
+      # allow all authenticated users to view books
+      { allow: private, operations: [read] }
+      # allow all guest users (not authenticated) to view books
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  categoryId: String!
+    @index(
+      name: "categoryByCategoryID"
+      sortKeyFields: ["createdAt"]
+      queryField: "categoryDetailByCategoryID"
+    )
+  categoryprice: Int
+  categoryname: String!
+    @index(
+      name: "categoryByCategoryName"
+      sortKeyFields: ["createdAt"]
+      queryField: "categoryDetailByCategoryName"
+    )
+  image: String!
+  templates: [Template]
+  categorydetail: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type Template
+  @model
+  @auth(
+    rules: [
+      # allow admins to create, update and delete books
+      {
+        allow: groups
+        groups: ["Admin"]
+        operations: [create, update, delete, read]
+      }
+      # allow all authenticated users to view books
+      { allow: private, operations: [read] }
+      # allow all guest users (not authenticated) to view books
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  templateId: String!
+    @index(
+      name: "byTemplateID"
+      sortKeyFields: ["createdAt"]
+      queryField: "templateByTemplateID"
+    )
+  categoryId: String!
+    @index(
+      name: "byCategoryID"
+      sortKeyFields: ["createdAt"]
+      queryField: "templateByCategoryID"
+    )
+  templateprice: Int
+  templatename: String!
+  image: String!
+  image1: String
+  image2: String
+  thumbnail: String
+  templatedetail: String!
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type Message @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  channelID: ID!
+    @index(
+      name: "byChannelID"
+      sortKeyFields: ["createdAt"]
+      queryField: "messagesByChannelID"
+    )
+  displayname: String!
+  author: String!
+  body: String!
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type Notification @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  QId: String!
+    @index(
+      name: "notificationByUserID"
+      sortKeyFields: ["createdAt"]
+      queryField: "notificationByQuerryID"
+    )
+  messagetype: String
+  message: String
+  cId: String
+  pId: String
+  projectname: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+type CreatorChats @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  userID: String
+    @index(
+      name: "creatorChatsByUserID"
+      sortKeyFields: ["createdAt"]
+      queryField: "creatorChatsByUserID"
+    )
+  creatorID: String
+    @index(
+      name: "creatorChatsByQuerryID"
+      sortKeyFields: ["createdAt"]
+      queryField: "creatorChatsByQuerryID"
+    )
+  channelID: String!
+    @index(
+      name: "creatorChatsByChannelID"
+      sortKeyFields: ["createdAt"]
+      queryField: "creatorChatsByChannelID"
+    )
+  displayname: String
+  userdisplayname: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+type CreatorWallet @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  userId: String!
+    @index(
+      name: "walletByUserID"
+      sortKeyFields: ["createdAt"]
+      queryField: "walletByUserID"
+    )
+  amount: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+type Transaction @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  userId: String!
+    @index(
+      name: "transactionByUserID"
+      sortKeyFields: ["createdAt"]
+      queryField: "transactionByQuerryID"
+    )
+  projectId: String
+    @index(
+      name: "transactionByProjectID"
+      sortKeyFields: ["createdAt"]
+      queryField: "transactionByProjectID"
+    )
+  amount: String
+  projectname: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type MoneyRequest @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  user: String!
+    @index(
+      name: "moneyrequestByUserID"
+      sortKeyFields: ["createdAt"]
+      queryField: "moneyrequestByUserID"
+    )
+  money: String!
+  upiId: String!
+  status: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+type TransactionRazorpay @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  userId: String!
+    @index(
+      name: "transactionRazorpayByUserID"
+      sortKeyFields: ["createdAt"]
+      queryField: "transactionRazorpayByQuerryID"
+    )
+  paymnetId: String
+  orderId: String
+  signature: String
+  projectId: String
+    @index(
+      name: "transactionRazorpayByProjectID"
+      sortKeyFields: ["createdAt"]
+      queryField: "transactionRazorpayByProjectID"
+    )
+  amount: String
+  projectname: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}

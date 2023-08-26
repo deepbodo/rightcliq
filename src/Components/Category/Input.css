@@ -1,0 +1,76 @@
+.input-container {
+  position: relative;
+  margin: 20px;
+  margin-bottom: 40px;
+  width: 470px;
+}
+.input-container label {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: 1.2rem;
+  color: rgb(0, 0, 0);
+  pointer-events: none;
+  font-family: "Montserrat", sans-serif;
+  transition: all 0.5s ease-in-out;
+}
+.input-container input {
+  border: 0;
+  border-bottom: 1px solid #555;
+  background: transparent;
+  width: 400px;
+  padding: 8px 0 5px 0;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+}
+.input-container input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #525252;
+}
+.input-container input:focus ~ label,
+.input-container input:valid ~ label {
+  top: -12px;
+  font-size: 1rem;
+}
+.input-container select {
+  border: 0;
+  border-bottom: 1px solid #555;
+  background: transparent;
+  width: 400px;
+  margin-bottom: 20px;
+  padding: 8px 0 5px 0;
+  font-size: 1rem;
+  color: rgb(0, 0, 0);
+}
+.input-container select:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #525252;
+}
+.input-container select:focus ~ label,
+.input-container select:valid ~ label {
+  top: -12px;
+  font-size: 1rem;
+}
+.input-container textarea {
+  border: 0;
+  border-bottom: 1px solid #555;
+  background: transparent;
+  width: 400px;
+  padding: 8px 0 5px 0;
+  border-radius: 10px;
+  height: 250px;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+}
+.input-container textarea:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #525252;
+}
+.input-container textarea:focus ~ label,
+.input-container textarea:valid ~ label {
+  top: -12px;
+  font-size: 1rem;
+}

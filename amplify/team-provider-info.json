@@ -1,0 +1,40 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-rightcliqfinal-dev-112214-authRole",
+      "UnauthRoleArn": "arn:aws:iam::856910905316:role/amplify-rightcliqfinal-dev-112214-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::856910905316:role/amplify-rightcliqfinal-dev-112214-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-rightcliqfinal-dev-112214-deployment",
+      "UnauthRoleName": "amplify-rightcliqfinal-dev-112214-unauthRole",
+      "StackName": "amplify-rightcliqfinal-dev-112214",
+      "StackId": "arn:aws:cloudformation:ap-south-1:856910905316:stack/amplify-rightcliqfinal-dev-112214/0f988050-b72c-11ed-b6b9-068a777efea6",
+      "AmplifyAppId": "d1qvbwlctgb179"
+    },
+    "categories": {
+      "auth": {
+        "rightcliqfinalee8bbe01": {},
+        "userPoolGroups": {}
+      },
+      "api": {
+        "rightcliqfinal": {},
+        "payment": {}
+      },
+      "storage": {
+        "storagefinal": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1qvbwlctgb179",
+          "type": "manual"
+        }
+      },
+      "function": {
+        "razorpaypayment": {
+          "deploymentBucketName": "amplify-rightcliqfinal-dev-112214-deployment",
+          "s3Key": "amplify-builds/razorpaypayment-3063437062636f517679-build.zip"
+        }
+      }
+    }
+  }
+}

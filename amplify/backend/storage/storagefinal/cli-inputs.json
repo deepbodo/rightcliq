@@ -1,0 +1,14 @@
+{
+  "resourceName": "storagefinal",
+  "policyUUID": "8cd7493b",
+  "bucketName": "storagerightcliqfinal",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "title": "Content Writing",
+    "description": "Top-quality content writing",
+    "logo": "x"
+  },
+  {
+    "id": 2,
+    "title": "Grpahic Design",
+    "description": "Top-quality graphics design"
+  },
+  {
+    "id": 3,
+    "title": "Xyz",
+    "description": "Top-quality XYZ"
+  }
+]
